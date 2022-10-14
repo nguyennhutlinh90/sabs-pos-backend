@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sabs-pos-backend-api", "sabs-pos-backend-api\sabs-pos-backend-api.csproj", "{10197940-DEBE-4FD2-949E-0F29951DF9B3}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{101A0C9D-3359-4CD4-A128-63F414E9A596}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10197940-DEBE-4FD2-949E-0F29951DF9B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10197940-DEBE-4FD2-949E-0F29951DF9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10197940-DEBE-4FD2-949E-0F29951DF9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10197940-DEBE-4FD2-949E-0F29951DF9B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{101A0C9D-3359-4CD4-A128-63F414E9A596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{101A0C9D-3359-4CD4-A128-63F414E9A596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{101A0C9D-3359-4CD4-A128-63F414E9A596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{101A0C9D-3359-4CD4-A128-63F414E9A596}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {92F1D950-3531-49E4-81ED-D440EA1C9B0D}
+	EndGlobalSection
+EndGlobal

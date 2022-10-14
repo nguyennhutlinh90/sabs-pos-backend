@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  sabs-pos-backend-api:
+    image: ${DOCKER_REGISTRY-}sabsposbackendapi
+    build:
+      context: .
+      dockerfile: sabs-pos-backend-api/Dockerfile

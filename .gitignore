@@ -1,0 +1,7 @@
+/.vs
+/bin
+/obj
+*.user
+*.pubxml
+/sabs-pos-backend-api/bin
+/sabs-pos-backend-api/obj
