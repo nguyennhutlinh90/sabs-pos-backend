@@ -6,7 +6,6 @@
     <UserSecretsId>88d80ab0-12d2-41f2-a621-67846ec3f2e6</UserSecretsId>
 	<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
