@@ -19,4 +19,7 @@ RUN dotnet publish "sabs-pos-backend-api.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "sabs-pos-backend-api.dll"]
+#ENTRYPOINT ["dotnet", "sabs-pos-backend-api.dll"]
+
+# Use the following instead for Heroku
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet sabs-pos-backend-api.dll
