@@ -24,8 +24,6 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 using System.Security.Claims;
 
 namespace sabs_pos_backend_api
