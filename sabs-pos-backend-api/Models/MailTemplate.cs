@@ -8,7 +8,7 @@ namespace sabs_pos_backend_api
 {
     public class MailTemplate
     {
-        static string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MailTemplates");
+        static string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "MailTemplates");
 
         static string readContent(string filePath)
         {

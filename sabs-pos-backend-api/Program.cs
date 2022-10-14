@@ -13,25 +13,27 @@ namespace sabs_pos_backend_api
     {
         public static void Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration()
-                            .MinimumLevel.Information()
-                            .WriteTo.File($"{AppDomain.CurrentDomain.BaseDirectory}/logs/log-.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
-                            .CreateLogger();
+            CreateHostBuilder(args).Build().Run();
 
-            try
-            {
-                Log.Information($"Application start-up on {DateTime.Now:yyy-MM-dd HH:mm:ss.fff}");
+            //Log.Logger = new LoggerConfiguration()
+            //                .MinimumLevel.Information()
+            //                .WriteTo.File($"{Directory.GetCurrentDirectory()}/logs/log-.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
+            //                .CreateLogger();
 
-                CreateHostBuilder(args).Build().Run();
-            }
-            catch (Exception ex)
-            {
-                Log.Fatal(ex, "Application start-up failed");
-            }
-            finally
-            {
-                Log.CloseAndFlush();
-            }
+            //try
+            //{
+            //    Log.Information($"Application start-up on {DateTime.Now:yyy-MM-dd HH:mm:ss.fff}");
+
+            //    CreateHostBuilder(args).Build().Run();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Fatal(ex, "Application start-up failed");
+            //}
+            //finally
+            //{
+            //    Log.CloseAndFlush();
+            //}
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -52,7 +54,7 @@ namespace sabs_pos_backend_api
                     webHostBuilder.UseSetting(WebHostDefaults.DetailedErrorsKey, "true");
                     webHostBuilder.UseStartup<Startup>();
                 })
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseSerilog();
+                .UseContentRoot(Directory.GetCurrentDirectory());
+                //.UseSerilog();
     }
 }
