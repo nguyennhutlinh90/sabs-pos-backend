@@ -32,20 +32,6 @@ namespace sabs_pos_test
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApiVersioning(options =>
-            {
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-                options.AssumeDefaultVersionWhenUnspecified = true;
-                options.ReportApiVersions = true;
-            });
-
-            services.AddVersionedApiExplorer(options =>
-            {
-                options.GroupNameFormat = "'v'VV";
-                options.SubstitutionFormat = "VV";
-                options.SubstituteApiVersionInUrl = true;
-            });
-
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
@@ -68,10 +54,9 @@ namespace sabs_pos_test
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
-            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigureOptions>();
-            services.AddSwaggerGen(options =>
+            services.AddSwaggerGen(c =>
             {
-                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
                     Description = "Please enter into field the word 'Bearer' following by space and JWT",
@@ -79,12 +64,31 @@ namespace sabs_pos_test
                     Type = SecuritySchemeType.ApiKey
                 });
 
-                options.MapType<DateTime>(() => new OpenApiSchema { Type = "string", Format = "date-time", Example = new OpenApiString(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")) });
+                c.MapType<DateTime>(() => new OpenApiSchema { Type = "string", Format = "date-time", Example = new OpenApiString(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")) });
+
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Drink Management Api",
+                    Description = "Drink Management Api for Backend",
+                    TermsOfService = new Uri("https://delfi.com/"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Delfi Technologies A/S",
+                        Email = "contact@delfi.com",
+                        Url = new Uri("https://delfi.com/")
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under LICX",
+                        Url = new Uri("https://delfi.com/license")
+                    }
+                });
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider apiVersionDescriptionProvider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -111,20 +115,11 @@ namespace sabs_pos_test
                 endpoints.MapControllers();
             });
 
-            app.UseSwagger(options =>
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
-                options.PreSerializeFilters.Add((swagger, req) =>
-                {
-                    swagger.Servers = new List<OpenApiServer>() { new OpenApiServer() { Url = $"https://{req.Host}" } };
-                });
-            });
-            app.UseSwaggerUI(options =>
-            {
-                foreach (var desc in apiVersionDescriptionProvider.ApiVersionDescriptions)
-                {
-                    options.SwaggerEndpoint($"../swagger/{desc.GroupName}/swagger.json", desc.ApiVersion.ToString());
-                    options.DocExpansion(DocExpansion.List);
-                }
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                c.RoutePrefix = "swagger";
             });
         }
     }
