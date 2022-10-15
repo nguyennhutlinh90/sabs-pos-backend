@@ -56,7 +56,7 @@ namespace sabs_pos_test
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
 
             app.UseRouting();
 
