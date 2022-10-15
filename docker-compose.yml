@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  sabs-pos-test:
+    image: ${DOCKER_REGISTRY-}sabspostest
+    build:
+      context: .
+      dockerfile: sabs-pos-test/Dockerfile
