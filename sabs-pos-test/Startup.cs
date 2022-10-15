@@ -62,10 +62,10 @@ namespace sabs_pos_test
 
             app.UseCors();
 
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.All
-            });
+            //app.UseForwardedHeaders(new ForwardedHeadersOptions
+            //{
+            //    ForwardedHeaders = ForwardedHeaders.All
+            //});
 
             app.UseAuthentication();
             app.UseAuthorization();
