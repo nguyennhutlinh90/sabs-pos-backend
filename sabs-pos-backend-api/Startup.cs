@@ -79,23 +79,6 @@ namespace sabs_pos_backend_api
 
             var appSettings = Configuration.GetSettings();
 
-            services.AddSqlHandler((configBuider) =>
-            {
-                configBuider.ConnectionString = appSettings.Configuration.ConnectionString;
-                configBuider.UpdateError = (error) =>
-                {
-                    error.Function.TableColumnsNotFound = (prefix, table, columns) =>
-                    {
-                        return string.Format("{0} field(s) ({1}) were not found", prefix, string.Join(", ", columns));
-                    };
-                    error.Function.TableColumnsRequired = (prefix, table) =>
-                    {
-                        return string.Format("{0} table '{1}' field(s) are required", prefix, table);
-                    };
-                    error.Prefix.Select = "Cursor";
-                };
-            });
-
             services.AddSingleton<IAppSettings>(appSettings);
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
