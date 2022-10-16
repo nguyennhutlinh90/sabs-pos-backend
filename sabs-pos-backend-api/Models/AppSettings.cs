@@ -40,7 +40,7 @@
 
     public class LinkSettings
     {
-        public string EmailConfirmation { get; set; }
+        public string ConfirmEmail1 { get; set; }
 
         public string ResetPassword { get; set; }
     }

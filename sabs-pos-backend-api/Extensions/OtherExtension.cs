@@ -13,7 +13,7 @@ namespace sabs_pos_backend_api
             appSettings.SeedData.AccountName = AesCrypto.Decrypt(appSettings.SeedData.AccountName);
             appSettings.SeedData.AccountEmail = AesCrypto.Decrypt(appSettings.SeedData.AccountEmail);
             appSettings.SeedData.AccountPass = AesCrypto.Decrypt(appSettings.SeedData.AccountPass);
-            appSettings.LinkSettings.EmailConfirmation = AesCrypto.Decrypt(appSettings.LinkSettings.EmailConfirmation);
+            appSettings.LinkSettings.ConfirmEmail1 = AesCrypto.Decrypt(appSettings.LinkSettings.ConfirmEmail1);
             appSettings.LinkSettings.ResetPassword = AesCrypto.Decrypt(appSettings.LinkSettings.ResetPassword);
             appSettings.MailSettings.Sender = AesCrypto.Decrypt(appSettings.MailSettings.Sender);
             appSettings.MailSettings.SmtpHost = AesCrypto.Decrypt(appSettings.MailSettings.SmtpHost);

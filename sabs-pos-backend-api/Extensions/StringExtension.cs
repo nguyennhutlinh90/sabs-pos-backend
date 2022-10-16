@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CoreLib.Crypto;
+
+using System;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -15,6 +17,21 @@ namespace sabs_pos_backend_api
         public static bool IsNull(this string value)
         {
             return string.IsNullOrEmpty(value);
+        }
+
+        public static string Decrypt(this string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return "";
+
+            try
+            {
+                return AesCrypto.Decrypt(value);
+            }
+            catch (Exception)
+            {
+                return "";
+            }
         }
 
         public static T ConvertTo<T>(this string value, T defaultValue = default(T))

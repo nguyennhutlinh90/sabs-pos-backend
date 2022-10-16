@@ -23,16 +23,16 @@ namespace sabs_pos_backend_api.Controllers
             return Execute(() =>
             {
                 var appSettings = _appSettings;
-                //appSettings.Configuration.ConnectionString = AesCrypto.Decrypt(_appSettings.Configuration.ConnectionString);
-                //appSettings.SeedData.AccountName = AesCrypto.Decrypt(_appSettings.SeedData.AccountName);
-                //appSettings.SeedData.AccountEmail = AesCrypto.Decrypt(_appSettings.SeedData.AccountEmail);
-                //appSettings.SeedData.AccountPass = AesCrypto.Decrypt(_appSettings.SeedData.AccountPass);
-                //appSettings.LinkSettings.EmailConfirmation = AesCrypto.Decrypt(_appSettings.LinkSettings.EmailConfirmation);
-                //appSettings.LinkSettings.ResetPassword = AesCrypto.Decrypt(_appSettings.LinkSettings.ResetPassword);
-                //appSettings.MailSettings.Sender = AesCrypto.Decrypt(_appSettings.MailSettings.Sender);
-                //appSettings.MailSettings.SmtpHost = AesCrypto.Decrypt(_appSettings.MailSettings.SmtpHost);
-                //appSettings.MailSettings.SmtpUser = AesCrypto.Decrypt(_appSettings.MailSettings.SmtpUser);
-                //appSettings.MailSettings.SmtpPass = AesCrypto.Decrypt(_appSettings.MailSettings.SmtpPass);
+                appSettings.Configuration.ConnectionString = _appSettings.Configuration.ConnectionString.Decrypt();
+                appSettings.SeedData.AccountName = _appSettings.SeedData.AccountName.Decrypt();
+                appSettings.SeedData.AccountEmail = _appSettings.SeedData.AccountEmail.Decrypt();
+                appSettings.SeedData.AccountPass = _appSettings.SeedData.AccountPass.Decrypt();
+                appSettings.LinkSettings.ConfirmEmail1 = _appSettings.LinkSettings.ConfirmEmail1.Decrypt();
+                appSettings.LinkSettings.ResetPassword = _appSettings.LinkSettings.ResetPassword.Decrypt();
+                appSettings.MailSettings.Sender = _appSettings.MailSettings.Sender.Decrypt();
+                appSettings.MailSettings.SmtpHost = _appSettings.MailSettings.SmtpHost.Decrypt();
+                appSettings.MailSettings.SmtpUser = _appSettings.MailSettings.SmtpUser.Decrypt();
+                appSettings.MailSettings.SmtpPass = _appSettings.MailSettings.SmtpPass.Decrypt();
                 return appSettings;
             });
         }
