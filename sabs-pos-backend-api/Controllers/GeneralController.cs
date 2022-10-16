@@ -40,8 +40,6 @@ namespace sabs_pos_backend_api.Controllers
                 byte[] salt = new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 };
                 using (var aes = Aes.Create())
                 {
-                    return "OK";
-
                     var rdb = new Rfc2898DeriveBytes("", salt);
                     aes.Key = rdb.GetBytes(32);
                     aes.IV = rdb.GetBytes(16);
