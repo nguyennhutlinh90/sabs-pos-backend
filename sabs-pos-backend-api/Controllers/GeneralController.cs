@@ -37,29 +37,39 @@ namespace sabs_pos_backend_api.Controllers
                 //appSettings.MailSettings.SmtpPass = _appSettings.MailSettings.SmtpPass.Decrypt();
                 //return appSettings;
 
-                byte[] salt = new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 };
-                using (var aes = Aes.Create())
+                try
                 {
-                    var rdb = new Rfc2898DeriveBytes("", salt);
-                    aes.Key = rdb.GetBytes(32);
-                    aes.IV = rdb.GetBytes(16);
-
-                    return "OK1";
-
-                    using (var ms = new MemoryStream())
+                    byte[] salt = new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 };
+                    using (var aes = Aes.Create())
                     {
-                        return "OK2";
+                        var rdb = new Rfc2898DeriveBytes("", salt);
+                        return "OK1";
 
-                        using (var cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Write))
+                        aes.Key = rdb.GetBytes(32);
+                        return "OK1.1";
+
+                        aes.IV = rdb.GetBytes(16);
+                        return "OK1.2";
+
+                        using (var ms = new MemoryStream())
                         {
-                            return "OK3";
+                            return "OK2";
 
-                            var encBytes = Convert.FromBase64String(_appSettings.Configuration.ConnectionString.Replace(" ", "+"));
-                            cs.Write(encBytes, 0, encBytes.Length);
-                            cs.Close();
+                            using (var cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Write))
+                            {
+                                return "OK3";
+
+                                var encBytes = Convert.FromBase64String(_appSettings.Configuration.ConnectionString.Replace(" ", "+"));
+                                cs.Write(encBytes, 0, encBytes.Length);
+                                cs.Close();
+                            }
+                            return Encoding.Unicode.GetString(ms.ToArray());
                         }
-                        return Encoding.Unicode.GetString(ms.ToArray());
                     }
+                }
+                catch (Exception ex)
+                {
+                    return ex.Message;
                 }
             });
         }
