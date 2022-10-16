@@ -5,7 +5,7 @@ using Microsoft.OpenApi.Models;
 
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace sabs_pos_test
+namespace sabs_pos_backend_api
 {
     public class SwaggerConfigureOptions : IConfigureOptions<SwaggerGenOptions>
     {

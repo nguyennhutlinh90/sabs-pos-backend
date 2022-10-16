@@ -1,15 +1,13 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Serilog;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace sabs_pos_test
+using Serilog;
+
+using System;
+using System.IO;
+
+namespace sabs_pos_backend_api
 {
     public class Program
     {
@@ -22,7 +20,7 @@ namespace sabs_pos_test
 
             try
             {
-                Log.Information($"Application start-up on {DateTime.Now:yyy-MM-dd HH:mm:ss.fff}");
+                Log.Information($"Application start-up");
 
                 CreateHostBuilder(args).Build().Run();
             }

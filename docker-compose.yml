@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  sabs-pos-test:
-    image: ${DOCKER_REGISTRY-}sabspostest
+  sabs-pos-backend-api:
+    image: ${DOCKER_REGISTRY-}sabsposbackendapi
     build:
       context: .
-      dockerfile: sabs-pos-test/Dockerfile
+      dockerfile: sabs-pos-backend-api/Dockerfile

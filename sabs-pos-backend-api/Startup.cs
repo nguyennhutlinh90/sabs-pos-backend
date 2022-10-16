@@ -1,25 +1,24 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+
 using Newtonsoft.Json;
+
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace sabs_pos_test
+namespace sabs_pos_backend_api
 {
     public class Startup
     {
@@ -59,16 +58,18 @@ namespace sabs_pos_test
                 });
             });
 
+            //services.AddMvc()
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
-                    options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";
+                    options.SerializerSettings.DateFormatString = SystemFormat.DATE_TIME;
                     //options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
                     //options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
+            // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigureOptions>();
             services.AddSwaggerGen(options =>
             {
@@ -80,7 +81,9 @@ namespace sabs_pos_test
                     Type = SecuritySchemeType.ApiKey
                 });
 
-                options.MapType<DateTime>(() => new OpenApiSchema { Type = "string", Format = "date-time", Example = new OpenApiString(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")) });
+                options.MapType<DateTime>(() => new OpenApiSchema { Type = "string", Format = "date-time", Example = new OpenApiString(DateTime.Now.Format()) });
+
+                options.OperationFilter<AuthorizeOperationFilter>();
             });
         }
 

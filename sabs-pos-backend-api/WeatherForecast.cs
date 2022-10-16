@@ -1,6 +1,6 @@
 using System;
 
-namespace sabs_pos_test
+namespace sabs_pos_backend_api
 {
     public class WeatherForecast
     {

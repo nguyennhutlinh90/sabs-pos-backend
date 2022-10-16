@@ -5,10 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace sabs_pos_test.Controllers
+namespace sabs_pos_backend_api.Controllers
 {
     [ApiController]
+    [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/[controller]")]
+    //[Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]

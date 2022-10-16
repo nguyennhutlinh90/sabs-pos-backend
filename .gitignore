@@ -3,5 +3,5 @@
 /obj
 *.user
 *.pubxml
-/sabs-pos-test/bin
-/sabs-pos-test/obj
+/sabs-pos-backend-api/bin
+/sabs-pos-backend-api/obj
