@@ -26,7 +26,7 @@ namespace sabs_pos_backend_api
 
             try
             {
-                return AesCrypto.Decrypt(value);
+                return Md5Crypto.Decrypt(value);
             }
             catch (Exception)
             {
