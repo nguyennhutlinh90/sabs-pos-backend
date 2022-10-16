@@ -77,9 +77,6 @@ namespace sabs_pos_backend_api
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
-            var appSettings = Configuration.GetSettings();
-
-            services.AddSingleton<IAppSettings>(appSettings);
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
