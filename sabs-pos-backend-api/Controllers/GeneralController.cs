@@ -22,7 +22,7 @@ namespace sabs_pos_backend_api.Controllers
         {
             return Execute(() =>
             {
-                return _appSettings.Configuration.ConnectionString.Decrypt();
+                return _appSettings;
             });
         }
     }
