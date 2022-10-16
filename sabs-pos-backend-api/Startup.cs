@@ -99,14 +99,6 @@ namespace sabs_pos_backend_api
             services.AddSingleton<IAppSettings>(appSettings);
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
-            services.AddSingleton<IAccountService, AccountService>();
-            services.AddSingleton<IActivityLogService, ActivityLogService>();
-            services.AddSingleton<IEmployeeService, EmployeeService>();
-            services.AddSingleton<IMailService, MailService>();
-            services.AddSingleton<IPOSDeviceService, POSDeviceService>();
-            services.AddSingleton<IRoleService, RoleService>();
-            services.AddSingleton<IStoreService, StoreService>();
-
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigureOptions>();
             services.AddSwaggerGen(options =>
