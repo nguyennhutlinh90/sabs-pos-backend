@@ -79,53 +79,6 @@ namespace sabs_pos_backend_api
 
             var appSettings = Configuration.GetSettings();
 
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(appSettings.Configuration.JwtTokenKey.ToBytes()),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-                x.Events = new JwtBearerEvents
-                {
-                    OnTokenValidated = async (context) =>
-                    {
-                        if (context.Principal != null)
-                        {
-                            //var uuid = context.Principal.FindFirstValue(ClaimType.LOGIN_UUID);
-                            //if (!string.IsNullOrEmpty(uuid))
-                            //{
-                            //    var srvAccount = context.HttpContext.RequestServices.GetService<IAccountService>();
-                            //    var account = await srvAccount.Get<AccountRes>(QF.EQ("uuid", uuid), include: QI.IC("roles", "uuid role_uuid"));
-                            //    if (!account.IsNull())
-                            //    {
-                            //        var password = context.Principal.FindFirstValue(ClaimType.PASSWORD);
-                            //        var role_uuid = context.Principal.FindFirstValue(ClaimType.ROLE_UUID);
-                            //        if (account.password_hash == password && account.role_uuid == role_uuid)
-                            //        {
-                            //            context.Success();
-                            //            return;
-                            //        }
-                            //    }
-                            //}
-
-                            context.Success();
-                            return;
-                        }
-                        context.Fail("Unauthorized");
-                    }
-                };
-            });
-
             services.AddSqlHandler((configBuider) =>
             {
                 configBuider.ConnectionString = appSettings.Configuration.ConnectionString;
